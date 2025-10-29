@@ -16,15 +16,30 @@ public class TransferenciaBancaria implements MetodoPago {
 
     @Override
     public boolean procesarPago(double monto) {
-        return validar() && montoTransferido >= monto;
+        if (!validar()) {
+            return false;
+        }
+        if (montoTransferido < monto) {
+            return false;
+        }
+        return true;
     }
+
 
     @Override
     public boolean validar() {
-        return numeroReferencia != null && !numeroReferencia.trim().isEmpty()
-                && banco != null && !banco.trim().isEmpty()
-                && montoTransferido > 0;
+        if (numeroReferencia == null || numeroReferencia.trim().isEmpty()) {
+            return false;
+        }
+        if (banco == null || banco.trim().isEmpty()) {
+            return false;
+        }
+        if (montoTransferido <= 0) {
+            return false;
+        }
+        return true;
     }
+
 
     // Getters
     public String getNumeroReferencia() {
