@@ -1,5 +1,6 @@
 package formularios;
 
+import java.awt.Image;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelos.SistemaTechStore;
@@ -22,6 +23,11 @@ public class AsignarTecnicoServicioForm extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         cargarDatos();
+        setTitle("Asignar Técnicos");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
 
     private void cargarDatos() {

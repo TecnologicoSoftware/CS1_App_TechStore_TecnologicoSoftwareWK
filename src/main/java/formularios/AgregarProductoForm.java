@@ -1,6 +1,7 @@
 package formularios;
 
 import enums.Categoria;
+import java.awt.Image;
 import javax.swing.JOptionPane;
 import modelos.ProductoFisico;
 import modelos.SistemaTechStore;
@@ -16,6 +17,11 @@ public class AgregarProductoForm extends javax.swing.JFrame {
         this.sistema = sistema;
         initComponents();
         llenarCategorias();
+        setTitle("Agregar Productos");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
     
     private void llenarCategorias() {

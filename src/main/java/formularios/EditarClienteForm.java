@@ -1,5 +1,6 @@
 package formularios;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelos.Cliente;
@@ -26,6 +27,11 @@ public class EditarClienteForm extends javax.swing.JFrame {
         
         // Readonly activado
         txtCedula.setEditable(false);
+        setTitle("Editar Clientes");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
 
     

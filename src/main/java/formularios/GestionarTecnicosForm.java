@@ -1,5 +1,6 @@
 package formularios;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,11 @@ public class GestionarTecnicosForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         inicializarTabla();
         cargarTecnicos();
+        setTitle("Módulo de Técnicos");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
     
     private void inicializarTabla() {

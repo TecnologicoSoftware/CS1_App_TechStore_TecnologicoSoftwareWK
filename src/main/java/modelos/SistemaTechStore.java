@@ -1,9 +1,11 @@
 package modelos;
 
 import abstractos.Usuario;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 public class SistemaTechStore {
 
@@ -14,6 +16,11 @@ public class SistemaTechStore {
     private ArrayList<ServicioDigital> servicios = new ArrayList<>();
     private ArrayList<Tecnico> tecnicos;
     private Usuario usuarioActual;
+    
+    public Image cargarIconoTechStore() {
+        ImageIcon icono = new ImageIcon("src/main/java/imagenes/tech_store.png");
+        return icono.getImage();
+    }
 
     public SistemaTechStore() {
         this.inventario = new Inventario();

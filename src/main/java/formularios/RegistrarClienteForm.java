@@ -1,5 +1,6 @@
 package formularios;
 
+import java.awt.Image;
 import javax.swing.JOptionPane;
 import modelos.Cliente;
 import modelos.SistemaTechStore;
@@ -15,6 +16,11 @@ public class RegistrarClienteForm extends javax.swing.JFrame {
         this.clientesFormPadre = clientesForm;
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Registro de Clientes");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
 
     

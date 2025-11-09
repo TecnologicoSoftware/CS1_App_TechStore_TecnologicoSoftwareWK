@@ -1,5 +1,6 @@
 package formularios;
 
+import java.awt.Image;
 import javax.swing.JOptionPane;
 import modelos.ServicioDigital;
 import modelos.SistemaTechStore;
@@ -15,6 +16,11 @@ public class AgregarServicioForm extends javax.swing.JFrame {
         this.inventarioPadre = inventario;
         initComponents();
         this.setLocationRelativeTo(null);
+        setTitle("Agregar Servicios");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
 
     

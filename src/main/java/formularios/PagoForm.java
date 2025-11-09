@@ -1,5 +1,6 @@
 package formularios;
 
+import java.awt.Image;
 import modelos.SistemaTechStore;
 import modelos.Venta;
 import modelos.Efectivo;
@@ -25,6 +26,11 @@ public class PagoForm extends javax.swing.JFrame {
         configurarMetodosPago();
         mostrarTotal();
         ocultarPaneles();
+        setTitle("Pasarela de Pagos");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
     
     private void configurarMetodosPago() {

@@ -1,5 +1,6 @@
 package formularios;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,6 +22,11 @@ public class ClientesForm extends javax.swing.JFrame {
         
         inicializarTabla();
         cargarClientes();
+        setTitle("Módulo de Clientes");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
     
     private void inicializarTabla() {

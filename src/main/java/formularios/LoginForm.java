@@ -1,5 +1,7 @@
 package formularios;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelos.SistemaTechStore;
 
@@ -12,7 +14,13 @@ public class LoginForm extends javax.swing.JFrame {
         this.sistema = sistema;
         setTitle("Inicio de Sesión");
         initComponents();
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

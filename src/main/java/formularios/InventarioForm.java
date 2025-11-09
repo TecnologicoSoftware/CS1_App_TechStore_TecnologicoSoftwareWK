@@ -1,5 +1,6 @@
 package formularios;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -24,6 +25,11 @@ public class InventarioForm extends javax.swing.JFrame {
         inicializarTabla();
         cargarProductos();
         cargarServicios();
+        setTitle("Módulo de Inventario");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
     
     private void inicializarTabla() {

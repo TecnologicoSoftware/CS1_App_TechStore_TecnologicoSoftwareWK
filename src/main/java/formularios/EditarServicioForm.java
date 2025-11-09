@@ -1,5 +1,6 @@
 package formularios;
 
+import java.awt.Image;
 import javax.swing.JOptionPane;
 import modelos.SistemaTechStore;
 
@@ -21,6 +22,11 @@ public class EditarServicioForm extends javax.swing.JFrame {
         txtPrecio.setText(String.valueOf(precio));
         txtDescripcion.setText(descripcion);
         txtDuracion.setText(String.valueOf(duracion));
+        setTitle("Editar Servicio");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
 
     @SuppressWarnings("unchecked")

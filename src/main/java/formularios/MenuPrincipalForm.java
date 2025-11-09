@@ -13,9 +13,13 @@ public class MenuPrincipalForm extends javax.swing.JFrame {
     
     public MenuPrincipalForm(SistemaTechStore sistema) {
         this.sistema = sistema;
-        setTitle("Menú de Opciones");
         initComponents();
         cargarImagenes();
+        setTitle("Menú de Opciones");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
     
     public void cargarImagenes() {

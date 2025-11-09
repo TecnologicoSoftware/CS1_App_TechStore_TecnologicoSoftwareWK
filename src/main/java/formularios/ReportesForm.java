@@ -1,7 +1,17 @@
 package formularios;
 
+import java.awt.Image;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelos.ItemVenta;
+import modelos.ProductoFisico;
+import modelos.ServicioDigital;
 import modelos.SistemaTechStore;
+import modelos.Venta;
 
 public class ReportesForm extends javax.swing.JFrame {
     
@@ -14,6 +24,11 @@ public class ReportesForm extends javax.swing.JFrame {
         initComponents();
         inicializarTabla();
         llenarTiposReporte();
+        setTitle("Módulo de Reportes");
+        
+        //Cargar Imagen Tech Store
+        Image iconoTechStore = sistema.cargarIconoTechStore();
+        this.setIconImage(iconoTechStore);
     }
     
     private void inicializarTabla() {
@@ -28,12 +43,10 @@ public class ReportesForm extends javax.swing.JFrame {
     
     private void llenarTiposReporte() {
         comboTipoReporte.removeAllItems();
-        comboTipoReporte.addItem("Ventas del Día");
-        comboTipoReporte.addItem("Productos Más Vendidos");
-        comboTipoReporte.addItem("Productos Stock Bajo");
-        comboTipoReporte.addItem("Todas las Ventas");
-        comboTipoReporte.addItem("Ventas por Cajero");
-        comboTipoReporte.addItem("Ventas por Período");
+        comboTipoReporte.addItem("Ventas del día por cajero");
+        comboTipoReporte.addItem("Productos más vendidos");
+        comboTipoReporte.addItem("Total de ventas por período");
+        comboTipoReporte.addItem("Productos con stock bajo");
     }
     
     @SuppressWarnings("unchecked")
@@ -100,36 +113,35 @@ public class ReportesForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(329, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnGenerar)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(277, 277, 277)
-                                .addComponent(btnGenerar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnRegresar)
-                                .addGap(188, 188, 188)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(comboTipoReporte, 0, 124, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(dateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comboTipoReporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(306, 306, 306))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(btnRegresar)
+                        .addGap(402, 402, 402)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -139,26 +151,22 @@ public class ReportesForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(btnRegresar))
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
-                        .addComponent(btnGenerar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addComponent(lblTotal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(comboTipoReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(dateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboTipoReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(btnGenerar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(lblTotal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -166,12 +174,195 @@ public class ReportesForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        String tipoReporte = (String) comboTipoReporte.getSelectedItem();
         
+        switch (tipoReporte) {
+            case "Ventas del día por cajero":
+                generarReporteVentasDiaCajero();
+                break;
+            case "Productos más vendidos":
+                generarReporteProductosMasVendidos();
+                break;
+            case "Total de ventas por período":
+                generarReporteVentasPeriodo();
+                break;
+            case "Productos con stock bajo":
+                generarReporteProductosStockBajo();
+                break;
+        }
     }//GEN-LAST:event_btnGenerarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+    
+    private void generarReporteVentasDiaCajero() {
+        modeloTabla.setRowCount(0);
+
+        String[] columnas = {"Cajero", "Ventas", "Total"};
+        modeloTabla.setColumnIdentifiers(columnas);
+
+        ArrayList<Venta> ventas = (ArrayList<Venta>) sistema.getVentas();
+        Date hoy = new Date();
+
+        int totalVentasDia = 0;
+        double totalGeneralDia = 0;
+
+        for (Venta venta : ventas) {
+            if (esMismoDia(venta.getFecha(), hoy)) {
+                String cajero = venta.getCajero();
+                double totalVenta = venta.calcularTotal();
+
+                boolean cajeroEncontrado = false;
+                for (int i = 0; i < modeloTabla.getRowCount(); i++) {
+                    if (modeloTabla.getValueAt(i, 0).equals(cajero)) {
+                        int ventasActuales = (int) modeloTabla.getValueAt(i, 1);
+                        double totalActual = Double.parseDouble(modeloTabla.getValueAt(i, 2).toString().replace("$", ""));
+
+                        modeloTabla.setValueAt(ventasActuales + 1, i, 1);
+                        modeloTabla.setValueAt(String.format("$%.2f", totalActual + totalVenta), i, 2);
+
+                        cajeroEncontrado = true;
+                        break;
+                    }
+                }
+
+                if (!cajeroEncontrado) {
+                    Object[] fila = {
+                        cajero,
+                        1,
+                        String.format("$%.2f", totalVenta)
+                    };
+                    modeloTabla.addRow(fila);
+                }
+
+                totalVentasDia++;
+                totalGeneralDia += totalVenta;
+            }
+        }
+
+        lblTotal.setText("Ventas hoy: " + totalVentasDia + " - Total: $" + totalGeneralDia);
+    }
+    
+    private void generarReporteProductosMasVendidos() {
+        modeloTabla.setRowCount(0);
+
+        String[] columnas = {"Producto", "Vendidos", "Total"};
+        modeloTabla.setColumnIdentifiers(columnas);
+
+        ArrayList<Venta> ventas = (ArrayList<Venta>) sistema.getVentas();
+        int totalProductosDiferentes = 0;
+        int totalUnidadesVendidas = 0;
+        double totalGeneral = 0;
+
+        for (Venta venta : ventas) {
+            for (ItemVenta item : venta.getItems()) {
+                String producto = item.getProducto().getNombre();
+                int cantidad = item.getCantidad();
+                double subtotal = item.calcularSubtotal();
+
+                boolean productoEncontrado = false;
+                for (int i = 0; i < modeloTabla.getRowCount(); i++) {
+                    if (modeloTabla.getValueAt(i, 0).equals(producto)) {
+                        // Actualizar producto existente
+                        int vendidosActuales = (int) modeloTabla.getValueAt(i, 1);
+                        double totalActual = Double.parseDouble(modeloTabla.getValueAt(i, 2).toString().replace("$", ""));
+
+                        modeloTabla.setValueAt(vendidosActuales + cantidad, i, 1);
+                        modeloTabla.setValueAt(String.format("$%.2f", totalActual + subtotal), i, 2);
+
+                        productoEncontrado = true;
+                        break;
+                    }
+                }
+
+                if (!productoEncontrado) {
+                    Object[] fila = {
+                        producto,
+                        cantidad,
+                        String.format("$%.2f", subtotal)
+                    };
+                    modeloTabla.addRow(fila);
+                    totalProductosDiferentes++;
+                }
+
+                totalUnidadesVendidas += cantidad;
+                totalGeneral += subtotal;
+            }
+        }
+
+        lblTotal.setText("Productos: " + totalProductosDiferentes + " - Unidades: " + totalUnidadesVendidas + " - Total: $" + totalGeneral);
+    }
+    
+    private void generarReporteVentasPeriodo() {
+        modeloTabla.setRowCount(0);
+
+        String[] columnas = {"Fecha", "Venta", "Cliente", "Total"};
+        modeloTabla.setColumnIdentifiers(columnas);
+
+        ArrayList<Venta> ventas = (ArrayList<Venta>) sistema.getVentas();
+        double totalGeneral = 0;
+        int totalVentas = 0;
+
+        for (Venta venta : ventas) {
+            double total = venta.calcularTotal();
+
+            Object[] fila = {
+                new SimpleDateFormat("dd/MM/yyyy").format(venta.getFecha()),
+                venta.getId(),
+                venta.getCliente() != null ? venta.getCliente().getNombre() : "Consumidor Final",
+                String.format("$%.2f", total)
+            };
+            modeloTabla.addRow(fila);
+
+            totalGeneral += total;
+            totalVentas++;
+        }
+
+        lblTotal.setText("Total ventas: " + totalVentas + " - Monto: $" + totalGeneral);
+    }
+    
+    private void generarReporteProductosStockBajo() {
+        modeloTabla.setRowCount(0);
+
+        String[] columnas = {"Producto", "Stock", "Estado"};
+        modeloTabla.setColumnIdentifiers(columnas);
+
+        ArrayList<ProductoFisico> productos = (ArrayList<ProductoFisico>) sistema.getInventario().getTodosProductos();
+
+        int productosBajoStock = 0;
+        int productosAgotados = 0;
+
+        for (ProductoFisico producto : productos) {
+            int stock = producto.getStock();
+
+            if (stock < 5) {
+                String estado = (stock == 0) ? "AGOTADO" : "BAJO";
+
+                Object[] fila = {
+                    producto.getNombre(),
+                    stock,
+                    estado
+                };
+                modeloTabla.addRow(fila);
+
+                if (stock == 0) {
+                    productosAgotados++;
+                } else {
+                    productosBajoStock++;
+                }
+            }
+        }
+
+        lblTotal.setText("Stock bajo: " + productosBajoStock + " - Agotados: " + productosAgotados);
+    }
+    
+    private boolean esMismoDia(Date fecha1, Date fecha2) {
+        // Método simplificado para comparar fechas
+        return fecha1.getDate() == fecha2.getDate() && 
+               fecha1.getMonth() == fecha2.getMonth() && 
+               fecha1.getYear() == fecha2.getYear();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerar;
