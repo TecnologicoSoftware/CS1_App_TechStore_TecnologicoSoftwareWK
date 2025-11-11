@@ -22,6 +22,7 @@ public class AgregarProductoForm extends javax.swing.JFrame {
         //Cargar Imagen Tech Store
         Image iconoTechStore = sistema.cargarIconoTechStore();
         this.setIconImage(iconoTechStore);
+        txtDescuento.setEnabled(false);
     }
     
     private void llenarCategorias() {
@@ -274,7 +275,7 @@ public class AgregarProductoForm extends javax.swing.JFrame {
         int stock = Integer.parseInt(stockTexto);
         Categoria categoria = Categoria.valueOf(categoriaSeleccionada);
         
-        String id = "P0" + (sistema.getInventario().getTodosProductos().size() + 1);
+        String id = "P00" + (sistema.getInventario().getTodosProductos().size() + 1);
         
         ProductoFisico producto = new ProductoFisico(id, nombre, precio, categoria, codigoBarras, ubicacion);
         producto.setStock(stock);

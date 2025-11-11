@@ -404,6 +404,7 @@ public class PagoForm extends javax.swing.JFrame {
             lblCambio.setText("");
         } else if (metodo.equals("TARJETA CRÉDITO") || metodo.equals("TARJETA DÉBITO")) {
             pnlTarjeta.setVisible(true);
+            jLabel6.setVisible(true);
             txtNumeroTarjeta.setText("");
             txtTitular.setText("");
             txtCuotas.setText("");
@@ -411,6 +412,7 @@ public class PagoForm extends javax.swing.JFrame {
             // Ocultar cuotas para débito
             if (metodo.equals("TARJETA DÉBITO")) {
                 txtCuotas.setVisible(false);
+                jLabel6.setVisible(false);
             } else {
                 txtCuotas.setVisible(true);
             }

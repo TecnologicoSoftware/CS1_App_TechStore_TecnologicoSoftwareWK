@@ -201,7 +201,7 @@ public class SistemaTechStore {
     }
     
     public String generarIdServicio() {
-        return "SD" + (servicios.size() + 1);
+        return "S00" + (servicios.size() + 1);
     }
 
     public void registrarVenta(Venta venta) {
