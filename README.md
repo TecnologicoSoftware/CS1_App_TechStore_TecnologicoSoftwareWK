@@ -575,8 +575,8 @@ Todos los formularios son componentes Swing (generados posiblemente con NetBeans
 
 **Desarrollado como proyecto académico de Construcción de Software 1**
 
-[![Universidad](https://img.shields.io/badge/Universidad-Tecnologico%de%Anquioquia-blue)]()
-[![Materia](https://img.shields.io/badge/Materia-Construcción%20de%20Software%201-green)]()
-[![Año](https://img.shields.io/badge/Año-2025-orange)]()
+[![Universidad](https://img.shields.io/badge/Universidad-Tecnologico%de%Anquioquia-blue)]
+[![Materia](https://img.shields.io/badge/Materia-Construcción%20de%20Software%201-green)]
+[![Año](https://img.shields.io/badge/Año-2025-orange)]
 
 </div>
